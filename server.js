@@ -13,5 +13,5 @@ app.use('/', cadastroRoutes);
 
 // Configuração da porta do servidor
 app.listen(3000, () => {
-  console.log(`172.16.7.4:3000`);  // Exibe no console a porta em que o servidor está rodando
+  console.log(`192.168.15.11:3000`);  // Exibe no console a porta em que o servidor está rodando
 });
