@@ -9,10 +9,9 @@ const app = express();
 app.use(express.json());  // express.json() substitui o body-parser para tratar dados JSON
 
 // Usa as rotas de usuário com o prefixo '/api'
-app.use('/api', cadastroRoutes);
+app.use('/', cadastroRoutes);
 
 // Configuração da porta do servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);  // Exibe no console a porta em que o servidor está rodando
+app.listen(3000, () => {
+  console.log(`172.16.7.4:3000`);  // Exibe no console a porta em que o servidor está rodando
 });

@@ -25,7 +25,7 @@ db.connect((err) => {
 // Função para cadastrar um novo usuário
 const cadastrarUsuario = (cpf, nome, idade, endereco, callback) => {
   // Definindo a consulta SQL para inserir um novo usuário na tabela 'usuarios'
-  const query = 'INSERT INTO usuarios (cpf, nome, idade, endereco) VALUES (?, ?, ?, ?)';
+  const query = 'INSERT INTO cadastro (cpf, nome, idade, endereco) VALUES (?, ?, ?, ?)';
   
   // Executa a consulta SQL, passando os dados como parâmetros
   db.query(query, [cpf, nome, idade, endereco], (err, result) => {
@@ -37,7 +37,7 @@ const cadastrarUsuario = (cpf, nome, idade, endereco, callback) => {
 // Função para consultar todos os usuários cadastrados
 const consultarUsuarios = (callback) => {
   // Definindo a consulta SQL para selecionar todos os registros da tabela 'usuarios'
-  const query = 'SELECT * FROM usuarios';
+  const query = 'SELECT * FROM cadastro';
   
   // Executa a consulta SQL
   db.query(query, (err, results) => {
@@ -49,7 +49,7 @@ const consultarUsuarios = (callback) => {
 // Função para atualizar os dados de um usuário específico
 const atualizarUsuario = (cpf, nome, idade, endereco, callback) => {
   // Definindo a consulta SQL para atualizar os dados de um usuário na tabela 'usuarios'
-  const query = 'UPDATE usuarios SET cpf = ?, nome = ?, idade = ?, endereco = ? WHERE id = ?';
+  const query = 'UPDATE cadastro SET cpf = ?, nome = ?, idade = ?, endereco = ? WHERE id = ?';
   
   // Executa a consulta SQL, passando os dados atualizados e o id do usuário
   db.query(query, [cpf, nome, idade, endereco,], (err, result) => {
@@ -61,7 +61,7 @@ const atualizarUsuario = (cpf, nome, idade, endereco, callback) => {
 // Função para excluir um usuário específico
 const excluirUsuario = (cpf, callback) => {
   // Definindo a consulta SQL para excluir um usuário da tabela 'usuarios' baseado no id
-  const query = 'DELETE FROM usuarios WHERE id = ?';
+  const query = 'DELETE FROM cadastro WHERE cpf = ?';
   
   // Executa a consulta SQL, passando o id do usuário a ser excluído
   db.query(query, [cpf], (err, result) => {
