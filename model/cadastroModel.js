@@ -48,15 +48,22 @@ const consultarUsuarios = (callback) => {
 
 // Função para atualizar os dados de um usuário específico
 const atualizarUsuario = (cpf, nome, idade, endereco, callback) => {
-  // Definindo a consulta SQL para atualizar os dados de um usuário na tabela 'usuarios'
-  const query = 'UPDATE cadastro SET cpf = ?, nome = ?, idade = ?, endereco = ? WHERE id = ?';
+  const query = 'UPDATE cadastro SET nome = ?, idade = ?, endereco = ? WHERE cpf = ?';
   
-  // Executa a consulta SQL, passando os dados atualizados e o id do usuário
-  db.query(query, [cpf, nome, idade, endereco,], (err, result) => {
-    // Chama o callback, retornando o erro (se houver) e o resultado da atualização
-    callback(err, result);
+  console.log('Atualizando usuário com CPF:', cpf);
+  console.log('Dados recebidos:', { nome, idade, endereco });
+
+  db.query(query, [nome, idade, endereco, cpf], (err, result) => {
+    if (err) {
+      console.error('Erro ao atualizar usuário:', err);  // Log de erro
+      callback(err, null);
+    } else {
+      console.log('Resultado da atualização:', result);
+      callback(null, result);
+    }
   });
 };
+
 
 // Função para excluir um usuário específico
 const excluirUsuario = (cpf, callback) => {
